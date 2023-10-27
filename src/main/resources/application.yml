@@ -11,9 +11,9 @@ spring:
       mode: always
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/db-user
+    url: jdbc:postgresql://localhost:5432/postgres
     username: admin
-    password: pass
+    password: admin
   jpa:
     properties:
       hibernate:

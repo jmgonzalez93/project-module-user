@@ -14,6 +14,12 @@
 #### docker ps
 #### copy CONTAINER ID  the image: postgres:latest
 #### docker inspect ${CONTAINER_ID}
+#### copy NetworkSettings.IPAddress
+#### in http://localhost:85
+#### login  user: admin@gmail.com password: pass
+#### create connections, replace host for value NetworkSettings.IPAddress and password = admin
+
+
 
 ## SWAGGER
 #### View in http://localhost:8080/swagger-ui/index.html
