@@ -36,15 +36,7 @@ curl --location --request POST 'localhost:8080/api/v1/user' \
 ```bash
 curl --location --request GET 'localhost:8080/api/v1/user?email=johndoe%40example.com' \
 --header 'Content-Type: application/json' \
---data-raw '{
-    "name": "John Doe",
-    "email": "johndoe@example.com",
-    "password": "password123", 
-    "phones": "555-1234,555-5678",
-    "lastLogin": "2023-10-26T10:30:00",
-    "isActive": true
-}
-'
+--data ''
 ```
 
 ```bash
@@ -62,15 +54,7 @@ curl --location --request PATCH 'localhost:8080/api/v1/user' \
 ```
 
 ```bash
-curl --location --request DELETE 'localhost:8080/api/v1/user?id=69a2b94a-0d42-4980-b3ae-52a87321254f' \
+curl --location --request DELETE 'localhost:8080/api/v1/user?id=eb15fc93-ca82-4bee-9e0f-1e3e618d45fc' \
 --header 'Content-Type: application/json' \
---data-raw '{
-    "name": "John Doe",
-    "email": "johndoe@example.com",
-    "password": "password123", 
-    "phones": "555-1234,555-5678",
-    "lastLogin": "2023-10-26T10:30:00",
-    "isActive": true
-}
-'
+--data ''
 ```
