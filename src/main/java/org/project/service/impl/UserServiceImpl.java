@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<ResponseEntityDTO> getUser(String email) {
         UserDataEntity userData = userRepository.findByEmail(email);
         if (userData == null) {
-            throw new NotFoundException("Error al recuperar el usuario: " + email);
+            throw new NotFoundException(String.format("User: %s does not exist", email));
         }
         UserDTO userDTO = Util.createObjectUserDTO(userData);
         return buildResponse("user ok", userDTO);
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<ResponseEntityDTO> createUser(UserDTO data) {
         if (userRepository.existsByEmail(data.getEmail())) {
-            throw new UserException("El usuario ya existe: " + data.getEmail());
+            throw new UserException("User already exists: " + data.getEmail());
         }
         UserDataEntity newUserData = modelMapperUtil().map(data, UserDataEntity.class);
         UserDataEntity savedUserData = userRepository.save(newUserData);
@@ -54,8 +55,9 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<ResponseEntityDTO> updateUser(UserDTO data) {
         UserDataEntity existingUser = userRepository.findByEmail(data.getEmail());
         if (existingUser == null) {
-            throw new UserException("El usuario no existe: " + data.getEmail());
+            throw new UserException("User does not exist: " + data.getEmail());
         }
+        existingUser.getPhones().clear();
         modelMapperUtil().map(data, existingUser);
         UserDataEntity savedUserData = userRepository.save(existingUser);
         return buildResponse("user update ok", modelMapperUtil().map(savedUserData, UserDTO.class));
@@ -73,7 +75,11 @@ public class UserServiceImpl implements UserService {
     }
 
     private ResponseEntity<ResponseEntityDTO> buildResponse(String message, Object data) {
-        return ResponseEntity.ok(ResponseEntityDTO.builder().message(message).data(data).build());
+        return ResponseEntity.ok(ResponseEntityDTO.builder()
+                .timestamp(LocalDateTime.now())
+                .message(message)
+                .data(data)
+                .build());
     }
 
 

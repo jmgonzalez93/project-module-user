@@ -6,6 +6,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Builder
@@ -31,9 +33,6 @@ public class UserDataEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "phones")
-    private String phones;
-
     @CreationTimestamp
     @Column(name = "created", updatable = false)
     private LocalDateTime created;
@@ -42,7 +41,8 @@ public class UserDataEntity {
     @Column(name = "modified")
     private LocalDateTime modified;
 
-    @Column(name = "last_login")
+    @CreationTimestamp
+    @Column(name = "last_login", updatable = true)
     private LocalDateTime lastLogin;
 
     @Column(name = "token")
@@ -50,6 +50,11 @@ public class UserDataEntity {
 
     @Column(name = "is_active")
     private Boolean isActive;
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<PhoneEntity> phones = new ArrayList<>();
 
     @PrePersist
     public void generateToken() {

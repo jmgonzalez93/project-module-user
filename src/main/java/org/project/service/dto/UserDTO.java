@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Builder
@@ -29,7 +30,7 @@ public class UserDTO {
     private String password;
 
     @JsonProperty("phones")
-    private String phones;
+    private List<PhoneDTO> phones;
 
     @JsonProperty("created")
     private LocalDateTime created;

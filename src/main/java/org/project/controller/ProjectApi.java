@@ -1,7 +1,6 @@
 package org.project.controller;
 
 
-import org.project.entity.UserDataEntity;
 import org.project.service.dto.ResponseEntityDTO;
 import org.project.service.dto.UserDTO;
 import org.springframework.http.ResponseEntity;
@@ -22,4 +21,10 @@ public interface ProjectApi {
 
     @DeleteMapping(value = "/user", produces = {"application/json"}, consumes = {"application/json"})
     ResponseEntity<ResponseEntityDTO> deleteUser(@RequestParam(value = "id") UUID id);
+
+    @PostMapping(value = "/login", produces = {"application/json"}, consumes = {"application/json"})
+    ResponseEntity<ResponseEntityDTO> loginUser(
+            @RequestHeader(value = "Authorization") String token,
+            @RequestParam(value = "email") String email
+    );
 }

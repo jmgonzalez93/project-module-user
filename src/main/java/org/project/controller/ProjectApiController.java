@@ -48,5 +48,10 @@ public class ProjectApiController implements ProjectApi {
         return userService.deleteUser(id);
     }
 
+    @Override
+    public ResponseEntity<ResponseEntityDTO> loginUser(String token, String email) {
+        return null;
+    }
+
 
 }

@@ -1,6 +1,5 @@
 package org.project.service;
 
-import org.project.entity.UserDataEntity;
 import org.project.service.dto.ResponseEntityDTO;
 import org.project.service.dto.UserDTO;
 import org.springframework.http.ResponseEntity;
