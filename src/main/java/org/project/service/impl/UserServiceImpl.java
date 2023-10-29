@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
         Optional<UserDataEntity> existingUser = userRepository.findById(id);
         if (existingUser.isPresent()) {
             userRepository.deleteById(id);
-            return buildResponse("delete ok id: " + id, existingUser.get());
+            return buildResponse("delete ok id: " + id, null);
         } else {
             return buildResponse("user not exist: " + id, null);
         }
