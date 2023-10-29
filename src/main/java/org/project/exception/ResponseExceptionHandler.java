@@ -32,4 +32,26 @@ public class ResponseExceptionHandler {
                         .timestamp(notFoundException.getTimestamp())
                         .build());
     }
+
+    @ExceptionHandler(NotAuthenticationException.class)
+    public ResponseEntity<ResponseEntityDTO> doApiException(NotAuthenticationException notAuthenticationException) {
+        log.error("[ERROR] error_message: {}", notAuthenticationException.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ResponseEntityDTO
+                        .builder()
+                        .message(notAuthenticationException.getMessage())
+                        .timestamp(notAuthenticationException.getTimestamp())
+                        .build());
+    }
+
+    @ExceptionHandler(NotPermissionException.class)
+    public ResponseEntity<ResponseEntityDTO> doApiException(NotPermissionException notPermissionException) {
+        log.error("[ERROR] error_message: {}", notPermissionException.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(ResponseEntityDTO
+                        .builder()
+                        .message(notPermissionException.getMessage())
+                        .timestamp(notPermissionException.getTimestamp())
+                        .build());
+    }
 }

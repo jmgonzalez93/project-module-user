@@ -71,4 +71,8 @@ public class Util {
 
         return modelMapper;
     }
+
+    public static boolean validPass(Pattern pattern,String password) {
+        return pattern.matcher(password).matches();
+    }
 }

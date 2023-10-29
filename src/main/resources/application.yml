@@ -28,7 +28,7 @@ server:
   port: 8080
 
 password-ex-reg:
-  var: ([A-Za-z\d$@$!%*?&]|[^ ])
+  var: ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$
 
 springdoc:
   swagger-ui:

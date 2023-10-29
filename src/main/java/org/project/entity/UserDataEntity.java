@@ -27,7 +27,7 @@ public class UserDataEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email", updatable = false)
     private String email;
 
     @Column(name = "password")
@@ -42,7 +42,7 @@ public class UserDataEntity {
     private LocalDateTime modified;
 
     @CreationTimestamp
-    @Column(name = "last_login", updatable = true)
+    @Column(name = "last_login")
     private LocalDateTime lastLogin;
 
     @Column(name = "token")

@@ -14,4 +14,6 @@ public interface UserService {
     ResponseEntity<ResponseEntityDTO> updateUser(UserDTO user);
 
     ResponseEntity<ResponseEntityDTO> deleteUser(UUID id);
+
+    ResponseEntity<ResponseEntityDTO> loginUser(String token, String email);
 }

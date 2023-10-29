@@ -50,7 +50,8 @@ public class ProjectApiController implements ProjectApi {
 
     @Override
     public ResponseEntity<ResponseEntityDTO> loginUser(String token, String email) {
-        return null;
+        log.info("[POST] /api/v1/loginUser  email:{}, token: {}", email, token);
+        return userService.loginUser(token, email);
     }
 
 
